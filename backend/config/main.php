@@ -54,6 +54,13 @@ return [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/rbac/views' => '@app/views/rbac'
+                ],
+            ],
+        ],
     ],
     'params' => $params,
 ];

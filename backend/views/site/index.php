@@ -11,6 +11,7 @@ $this->title = '仪表盘';
 $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
 $this->registerJsFile($directoryAsset.'/js/pages/dashboard2.js', ['depends'=>'dmstr\web\AdminLteAsset']);
 $this->registerJsFile($directoryAsset.'/js/demo.js', ['depends'=>'dmstr\web\AdminLteAsset']);
+$this->registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css', ['depends'=>'dmstr\web\AdminLteAsset']);
 
 ?>
 <!-- Info boxes -->

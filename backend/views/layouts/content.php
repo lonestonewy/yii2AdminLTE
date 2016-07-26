@@ -40,7 +40,7 @@ use dmstr\widgets\Alert;
     <div class="pull-right hidden-xs">
         <b>Version</b> 2.0
     </div>
-    <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright &copy; <?php echo date('Y') ?> <a href="http://yiidev.cn">lonestone@qq.com</a>.</strong> All rights
     reserved.
 </footer>
 
@@ -55,7 +55,7 @@ use dmstr\widgets\Alert;
     <div class="tab-content">
         <!-- Home tab content -->
         <div class="tab-pane" id="control-sidebar-home-tab">
-            <h3 class="control-sidebar-heading">Recent Activity</h3>
+            <h3 class="control-sidebar-heading">最近操作</h3>
             <ul class='control-sidebar-menu'>
                 <li>
                     <a href='javascript::;'>
@@ -104,7 +104,7 @@ use dmstr\widgets\Alert;
             </ul>
             <!-- /.control-sidebar-menu -->
 
-            <h3 class="control-sidebar-heading">Tasks Progress</h3>
+            <h3 class="control-sidebar-heading">任务进度</h3>
             <ul class='control-sidebar-menu'>
                 <li>
                     <a href='javascript::;'>
@@ -163,7 +163,7 @@ use dmstr\widgets\Alert;
         <!-- Settings tab content -->
         <div class="tab-pane" id="control-sidebar-settings-tab">
             <form method="post">
-                <h3 class="control-sidebar-heading">General Settings</h3>
+                <h3 class="control-sidebar-heading">一般设定</h3>
 
                 <div class="form-group">
                     <label class="control-sidebar-subheading">

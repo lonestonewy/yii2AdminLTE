@@ -20,10 +20,10 @@ use common\models\User;
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'password')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'status')->dropdownList([User::STATUS_ACTIVE=>'正常', User::STATUS_DELETED=>'已禁用']) ?>
+    <?= $form->field($model, 'status')->dropdownList([User::STATUS_ACTIVE=>'正常', User::STATUS_DELETED=>'已禁用'], ['prompt'=>'', 'data-placeholder'=>'状态', 'class'=>'form-control select2', 'style'=>'width:100%']) ?>
     <div class="box-footer">
-        <button type="submit" class="btn btn-default">Cancel</button>
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success pull-right' : 'btn btn-primary pull-right']) ?>
+        <button type="submit" class="btn btn-default">取消</button>
+        <?= Html::submitButton($model->isNewRecord ? '创建' : '更新', ['class' => $model->isNewRecord ? 'btn btn-success pull-right' : 'btn btn-primary pull-right']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>

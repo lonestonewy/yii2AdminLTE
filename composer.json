@@ -1,0 +1,59 @@
+{
+    "name": "VR资讯站",
+    "description": "克隆http://vr.aili.com的项目",
+    "keywords": ["VR"],
+    "homepage": "http://www.yiiframework.com/",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
+        "forum": "http://www.yiiframework.com/forum/",
+        "wiki": "http://www.yiiframework.com/wiki/",
+        "irc": "irc://irc.freenode.net/yii",
+        "source": "https://github.com/yiisoft/yii2"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": ">=2.0.6",
+        "yiisoft/yii2-bootstrap": "*",
+        "yiisoft/yii2-swiftmailer": "*",
+        "almasaeed2010/adminlte": "~2.0",
+        "dmstr/yii2-adminlte-asset": "^2.3",
+        "himiklab/yii2-easy-thumbnail-image-helper": "^1.0",
+        "2amigos/yii2-qrcode-helper": "^1.0",
+        "yiidoc/yii2-timeago": "^2.0",
+        "denisogr/yii2-cronjobs": "dev-master",
+        "overtrue/pinyin": "^2.5",
+        "2amigos/yii2-ckeditor-widget": "~1.0",
+        "dektrium/yii2-rbac": "^0.1.0",
+        "gamitg/yii2-detailview4cols": "*",
+        "codelint/chinapay": ">=1.1.6",
+        "light/yii2-lock-form": "~1.0.2",
+        "thelfensdrfer/yii2-ssh-console": "^1.1",
+        "abhi1693/yii2-config": "^1.0",
+        "kartik-v/yii2-date-range": "^1.6",
+        "kartik-v/yii2-builder": "^1.6",
+        "kartik-v/yii2-widgets": "^3.4",
+        "bower-asset/jquery": "1.11.*@stable"
+    },
+    "require-dev": {
+        "yiisoft/yii2-codeception": "*",
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-faker": "*"
+    },
+    "config": {
+        "process-timeout": 1800
+    },
+    "extra": {
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": "php init --env=Development --overwrite=n"
+    }
+}

@@ -1,9 +1,35 @@
 <?php
 return [
+    'language'=>'zh-CN',
+    'timeZone'=> 'Asia/Shanghai',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
+        ],
+        'assetManager' => [
+            'appendTimestamp' => true,
+        ],
+        'formatter'=>[
+            'class'=>'yii\i18n\Formatter',
+            'nullDisplay'=>'--',
+            'defaultTimeZone'=>'Asia/Shanghai',
+            'dateFormat'=>'yy/M/d',
+            'datetimeFormat'=>'yy/M/d HH:mm',
+        ],
+        'config' => [
+            'class'         => 'abhimanyu\config\components\Config', // Class (Required)
+            'db'            => 'db',                                 // Database Connection ID (Optional)
+            'tableName'     => '{{%config}}',                        // Table Name (Optioanl)
+            'cacheId'       => 'cache',                              // Cache Id. Defaults to NULL (Optional)
+            'cacheKey'      => 'config.cache',                       // Key identifying the cache value (Required only if cacheId is set)
+            'cacheDuration' => 100                                   // Cache Expiration time in seconds. 0 means never expire. Defaults to 0 (Optional)
+        ],
+        'session' => [
+            'class' => 'yii\web\DbSession',
+            // 'db' => 'db',
+            // 'sessionTable' => 'session',
+            'timeout'=>24*3600,
         ],
         'log' => [
             'traceLevel' => 3,

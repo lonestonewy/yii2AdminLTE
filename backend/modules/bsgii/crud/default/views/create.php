@@ -20,6 +20,11 @@ $this->params['breadcrumbs'][] = ['label' => '<?php echo $model->modelName ?>管
 $this->params['breadcrumbs'][] = '新增';
 ?>
 <div class="box box-info">
+    <div class="box-header">
+        <div class="pull-right">
+            <?= "<?= " ?> Html::a('<i class="fa fa-reply"></i>', ['index'], ['class' => 'btn btn-default']) ?>
+        </div>
+    </div>
     <?= "<?= " ?>$this->render('_form', [
         'model' => $model,
     ]) ?>

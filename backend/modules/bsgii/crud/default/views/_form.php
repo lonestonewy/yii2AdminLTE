@@ -26,7 +26,6 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-
 <div class="box-body">
     <?= "<?php " ?> $form = ActiveForm::begin([
         'options'=>['class'=>'form-horizontal'],

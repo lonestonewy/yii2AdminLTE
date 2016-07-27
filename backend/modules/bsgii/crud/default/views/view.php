@@ -54,7 +54,12 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
 } else {
     foreach ($generator->getTableSchema()->columns as $column) {
         $format = $generator->generateColumnFormat($column);
-        echo "            '" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";
+        if(strpos($column->name, 'image')!==false||strpos($column->name, 'photo')!==false||strpos($column->name, 'picture')!==false){
+            echo "            ['attribute'=>'" . $column->name."', 'format'=>'raw', 'value'=>Yii::\$app->formatter->asImage(\$model->" . $column->name.", ['height'=>200])],\n";
+        }
+        else{
+            echo "            '" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";
+        }
     }
 }
 ?>

@@ -35,10 +35,10 @@ $dataProvider->pagination->pageSize= Yii::$app->config->get('backend_pagesize', 
                 <!-- Check all button -->
                 <!-- <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button> -->
                 <div class="btn-group">
-                    <?php echo "<?="; ?> Html::a('<i class="fa fa-pencil-square-o"></i>', ['create'], ['class' => 'btn btn-default btn-sm']) ?>
+                    <?php echo "<?="; ?> Html::a('<i class="fa fa-pencil-square-o"></i>', ['create'], ['class' => 'btn btn-default']) ?>
                 </div>
                 <!-- /.btn-group -->
-                <a type="button" class="btn btn-default btn-sm" href="javascript:window.location.reload()"><i class="fa fa-refresh"></i></a>
+                <a type="button" class="btn btn-default" href="javascript:window.location.reload()"><i class="fa fa-refresh"></i></a>
                 <div class="visible-lg-block pull-right">
                     <!-- <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
@@ -75,18 +75,18 @@ $count = 0;
 if (($tableSchema = $generator->getTableSchema()) === false) {
     foreach ($generator->getColumnNames() as $name) {
         if (++$count < 6) {
-            echo "               '" . $name . "',\n";
+            echo "                  '" . $name . "',\n";
         } else {
-            echo "                // '" . $name . "',\n";
+            echo "                  // '" . $name . "',\n";
         }
     }
 } else {
     foreach ($tableSchema->columns as $column) {
         $format = $generator->generateColumnFormat($column);
         if (++$count < 6) {
-            echo "                '" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";
+            echo "                  '" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";
         } else {
-            echo "                 // '" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";
+            echo "                   // '" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";
         }
     }
 }

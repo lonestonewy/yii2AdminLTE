@@ -56,6 +56,30 @@ class Generator extends \yii\gii\generators\crud\Generator
     }
 
     /**
+     * Generates column format
+     * @param \yii\db\ColumnSchema $column
+     * @return string
+     */
+    public function generateColumnFormat($column)
+    {
+        if ($column->phpType === 'boolean'||($column->type=='smallint'&&strpos($column->name, 'is_')===0)) {
+            return 'boolean';
+        } elseif ($column->type === 'text'&&in_array($column->name, ['content', 'detail'])) {
+            return 'html';
+        } elseif ($column->type === 'text') {
+            return 'ntext';
+        } elseif (stripos($column->name, 'time') !== false && $column->phpType === 'integer') {
+            return 'datetime';
+        } elseif (stripos($column->name, 'email') !== false) {
+            return 'email';
+        } elseif (stripos($column->name, 'url') !== false) {
+            return 'url';
+        } else {
+            return 'text';
+        }
+    }
+
+    /**
      * Generates code for active field
      * @param string $attribute
      * @return string
@@ -72,11 +96,13 @@ class Generator extends \yii\gii\generators\crud\Generator
         }
         $column = $tableSchema->columns[$attribute];
         if ($column->phpType === 'boolean'||($column->type=='smallint'&&strpos($column->name, 'is_')===0)) {
-            return "\$form->field(\$model, '$attribute')->checkbox()";
+            return "\$form->field(\$model, '$attribute')->radiolist(['1'=>'是', '0'=>'否'], ['itemOptions'=>['class'=>'minimal']])";
         } elseif ($column->type === 'text'&&in_array($column->name, ['content', 'detail'])) {
             return "\$form->field(\$model, '$attribute')->widget(backend\widgets\CKEditor::classname())";
         } elseif ($column->type === 'text' || ($column->type === 'string' && $column->size>100)) {
             return "\$form->field(\$model, '$attribute')->textarea(['rows' => 6])";
+        } elseif ($column->type === 'string' && in_array($column->name, ['image', 'photo', 'filepath', 'screenshot', 'attach'])) {
+            return "\$form->field(\$model, '$attribute')->widget(backend\widgets\FileInput::classname())->hint('支持JPG、PNG格式，不要超过500KB为宜')";
         } else {
             if (preg_match('/^(password|pass|passwd|passcode)$/i', $column->name)) {
                 $input = 'passwordInput';

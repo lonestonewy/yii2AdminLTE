@@ -35,6 +35,7 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 <?php foreach ($generator->getColumnNames() as $attribute) {
+    if(in_array($attribute, ['created_at', 'updated_at'])) continue;
         if (in_array($attribute, $safeAttributes)) {
             echo "    <?= " . $generator->generateActiveField($attribute) . " ?>\n";
         }

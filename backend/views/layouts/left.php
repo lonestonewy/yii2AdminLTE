@@ -36,6 +36,7 @@
                     ['label' => '系统设置', 'icon' => 'fa fa-cog', 'url' => '#', 'items'=>[
                         ['label' => '用户管理', 'icon' => 'fa fa-users', 'url' => ['/user']],
                         ['label' => '权限管理', 'icon' => 'fa fa-lock', 'url' => ['/rbac'], 'visible' => Yii::$app->user->isAdmin],
+                        ['label' => '系统日志', 'icon' => 'fa fa-lock', 'url' => ['/log'], 'visible' => Yii::$app->user->isAdmin],
                     ]],
                     [
                         'label' => '开发工具',

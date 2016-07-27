@@ -49,7 +49,7 @@ class Generator extends \yii\gii\generators\model\Generator
      */
     public function getName()
     {
-        return 'My Model Generator';
+        return 'AdminLTE Model Generator';
     }
 
     /**

@@ -43,7 +43,7 @@ class Generator extends \yii\gii\generators\crud\Generator
      */
     public function getName()
     {
-        return 'My CRUD Generator';
+        return 'AdminLTE CRUD Generator';
     }
 
     /**

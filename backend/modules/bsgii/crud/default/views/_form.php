@@ -28,7 +28,7 @@ use yii\widgets\ActiveForm;
 
 <div class="box-body">
     <?= "<?php " ?> $form = ActiveForm::begin([
-        'options'=>['class'=>'form-horizontal'],
+        'options'=>['class'=>'form-horizontal', 'enctype'=>'multipart/form-data'],
         'fieldConfig'=>[
             'template'=>"{label}\n<div class=\"col-sm-10\">{input}\n{hint}\n{error}</div>",
             'labelOptions'=>['class'=>'col-sm-2 control-label'],

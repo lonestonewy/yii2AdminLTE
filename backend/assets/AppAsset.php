@@ -16,7 +16,6 @@ class AppAsset extends AssetBundle
         'css/sweetalert.css',
     ];
     public $js = [
-        'js/app.js',
         'js/sweetalert.min.js',
     ];
     public $depends = [

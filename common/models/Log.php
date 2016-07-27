@@ -31,21 +31,6 @@ class Log extends \common\components\ActiveRecord
         return 'log';
     }
 
-    // public function behaviors()
-    // {
-    //     return [
-    //         [
-    //             'class' => AttributeBehavior::className(),
-    //             'attributes' => [
-    //                 ActiveRecord::EVENT_BEFORE_INSERT => ['created_at'],
-    //             ],
-    //             'value' => function ($event) {
-    //                 return date('Y-m-d H:i:s');
-    //             },
-    //         ],
-    //     ];
-    // }
-
     /**
      * @inheritdoc
      */

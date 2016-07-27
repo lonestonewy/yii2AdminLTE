@@ -46,6 +46,7 @@ return [
             'errorAction' => 'site/error',
         ],
         'urlManager' => [
+            'class'=>'backend\components\RUrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [

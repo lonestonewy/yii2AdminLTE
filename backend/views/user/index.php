@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'tableOptions'=>['class'=>'table table-hover'],
                 'filterModel'=>null,
                 'pager'=>[
-                    'class'=>'common\components\LinkPager',
+                    'class'=>'backend\widgets\LinkPager',
                     'options' => ['class' => 'pagination pagination-sm no-margin pull-right'],
                 ],
                 'columns' => [
@@ -59,7 +59,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     'created_at',
                     // 'updated_at',
 
-                    ['class' => 'yii\grid\ActionColumn'],
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'buttonOptions'=>['class'=>'btn btn-default btn-sm'],
+                    ],
                 ],
             ]); ?>
             <!-- /.box-body -->

@@ -4,10 +4,6 @@ use yii\helpers\Html;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-$directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
-$this->registerJsFile('/js/moment.min.js', ['depends'=>'dmstr\web\AdminLteAsset']);
-$this->registerJsFile($directoryAsset.'/js/demo.js', ['depends'=>'dmstr\web\AdminLteAsset']);
-
 if (Yii::$app->controller->action->id === 'login') {
 /**
  * Do not use this code in your template. Remove it.
@@ -19,13 +15,11 @@ if (Yii::$app->controller->action->id === 'login') {
     );
 } else {
 
-    if (class_exists('backend\assets\AppAsset')) {
-        backend\assets\AppAsset::register($this);
-    } else {
-        app\assets\AppAsset::register($this);
-    }
-
+    $this->registerJsFile('/js/moment.min.js', ['position'=>\yii\web\View::POS_HEAD]);
+    backend\assets\AppAsset::register($this);
     $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
+    // $this->registerJsFile($directoryAsset.'/js/demo.js', ['depends'=>'backend\assets\AdminLteAsset']);
+
     ?>
     <?php $this->beginPage() ?>
     <!DOCTYPE html>

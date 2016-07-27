@@ -99,6 +99,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             // $model->uploadImages(['image']);
 
             if (!$model->hasErrors() && $model->save()) {
+                Yii::$app->session->setFlash('success', $model->modelName.'#'.$model->id.'已添加成功。');
                 return $this->redirect(['view', <?= $urlParams ?>]);
             }
         }
@@ -126,6 +127,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             // $model->uploadImages(['image']);
 
             if (!$model->hasErrors() && $model->save()) {
+                Yii::$app->session->setFlash('success', $model->modelName.'#'.$model->id.'已更新成功。');
                 return $this->redirect(['view', <?= $urlParams ?>]);
             }
         }
@@ -143,7 +145,9 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
      */
     public function actionDelete(<?= $actionParams ?>)
     {
-        $this->findModel(<?= $actionParams ?>)->delete();
+        $model = $this->findModel(<?= $actionParams ?>);
+        Yii::$app->session->setFlash('warning', $model->modelName.'#'.$model->id.'已成功删除。');
+        $model->delete();
 
         return $this->redirect(['index']);
     }

@@ -22,7 +22,8 @@ class AppAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
-        'backend\assets\AdminLtePluginAsset',
-        'dmstr\web\AdminLteAsset',
+        'yii\widgets\ActiveFormAsset',
+        'backend\assets\AdminLteAsset',
+        // 'backend\assets\CKFinderAsset',
     ];
 }

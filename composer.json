@@ -20,7 +20,6 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "almasaeed2010/adminlte": "~2.0",
-        "dmstr/yii2-adminlte-asset": "^2.3",
         "himiklab/yii2-easy-thumbnail-image-helper": "^1.0",
         "2amigos/yii2-qrcode-helper": "^1.0",
         "yiidoc/yii2-timeago": "^2.0",

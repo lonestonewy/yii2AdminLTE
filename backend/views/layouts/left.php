@@ -30,11 +30,11 @@
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
                     ['label' => '内容管理', 'icon' => 'fa fa-list', 'url' => '#', 'items'=>[
-                        ['label' => '资讯管理', 'icon' => 'fa fa-newspaper-o', 'url' => ['/article/index']],
-                        ['label' => '资讯分类', 'icon' => 'fa fa-list-ol', 'url' => ['/article-category/index']],
+                        ['label' => '资讯管理', 'icon' => 'fa fa-newspaper-o', 'url' => ['/article']],
+                        ['label' => '资讯分类', 'icon' => 'fa fa-list-ol', 'url' => ['/article-category']],
                     ]],
                     ['label' => '系统设置', 'icon' => 'fa fa-cog', 'url' => '#', 'items'=>[
-                        ['label' => '用户管理', 'icon' => 'fa fa-users', 'url' => ['/user/index']],
+                        ['label' => '用户管理', 'icon' => 'fa fa-users', 'url' => ['/user']],
                         ['label' => '权限管理', 'icon' => 'fa fa-lock', 'url' => ['/rbac'], 'visible' => Yii::$app->user->isAdmin],
                     ]],
                     [

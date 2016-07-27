@@ -62,6 +62,9 @@ return [
                 ],
             ],
         ],
+        'assetManager' => [
+            'bundles' => require(__DIR__ . '/' . (YII_ENV === 'prod' ? 'assets-prod.php' : 'assets-dev.php'))
+        ],
     ],
     'params' => $params,
 ];

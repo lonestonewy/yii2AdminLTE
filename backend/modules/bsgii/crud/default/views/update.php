@@ -21,10 +21,8 @@ $this->params['breadcrumbs'][] = ['label' => '<?php echo $model->modelName ?>管
 $this->params['breadcrumbs'][] = ['label' => $model-><?= $generator->getNameAttribute() ?>, 'url' => ['view', <?= $urlParams ?>]];
 $this->params['breadcrumbs'][] = '修改';
 ?>
-<div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-update">
-
+<div class="box box-info">
     <?= "<?= " ?>$this->render('_form', [
         'model' => $model,
     ]) ?>
-
 </div>

@@ -22,26 +22,27 @@ $this->title = '<?php echo $model->modelName ?>详情 '.$model-><?= $generator->
 $this->params['breadcrumbs'][] = ['label' => '<?php echo $model->modelName ?>', 'url' => ['index']];
 $this->params['breadcrumbs'][] = '<?php echo $model->modelName ?>详情';
 ?>
-<div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-view">
-    <div class="ibox float-e-margins">
-        <div class="ibox-title">
-            <h5><?php echo $model->modelName ?>详情</h5>
-            <div class="ibox-tools">
-                <?= "<?= " ?>Html::a('<i class="fa fa-edit"></i> 修改', ['update', <?= $urlParams ?>]) ?>
-                <?= "<?= " ?>Html::a('<i class="fa fa-trash-o"></i> 删除', ['delete', <?= $urlParams ?>], [
-                    'data' => [
-                        'confirm' => '您确定要删除这个项目吗？',
-                        'method' => 'post',
-                    ]
-                ]) ?>
-                <a class="close-link" href="<?= "<?= " ?> Url::toRoute(['index']) ?>">
-                    <i class="fa fa-undo"></i> 返回
-                </a>
-            </div>
-        </div>
-        <div class="ibox-content">
 
-    <?= "<?= " ?>DetailView::widget([
+<div class="box">
+    <div class="box-header">
+      <div class="btn-group">
+        <?= "<?= " ?> Html::a('<i class="fa fa-pencil"></i>', ['update', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
+        <?= "<?= " ?> Html::a('<i class="fa fa-trash-o"></i>', ['delete', 'id' => $model->id], [
+            'class' => 'btn btn-default',
+            'data' => [
+                'confirm' => '您确定要删除该项目吗？',
+                'method' => 'post',
+            ],
+        ]) ?>
+        <!-- /.btn-group -->
+    </div>
+    <div class="pull-right">
+        <?= "<?= " ?> Html::a('<i class="fa fa-reply"></i>', ['index'], ['class' => 'btn btn-default']) ?>
+    </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body no-padding">
+        <?= "<?= " ?>DetailView::widget([
         'model' => $model,
         'template' => '<tr><th width="20%">{label}</th><td>{value}</td></tr>',
         'attributes' => [
@@ -60,6 +61,6 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
         ],
     ]) ?>
 
-        </div>
     </div>
+    <!-- /.box-body -->
 </div>

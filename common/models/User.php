@@ -23,6 +23,8 @@ use yii\web\IdentityInterface;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
+    public $modelName = '用户';
+
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
 

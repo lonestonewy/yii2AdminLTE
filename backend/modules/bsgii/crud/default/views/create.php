@@ -19,9 +19,8 @@ $this->title = '新增<?php echo $model->modelName ?>';
 $this->params['breadcrumbs'][] = ['label' => '<?php echo $model->modelName ?>管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = '新增';
 ?>
-<div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-create">
+<div class="box box-info">
     <?= "<?= " ?>$this->render('_form', [
         'model' => $model,
     ]) ?>
-
 </div>

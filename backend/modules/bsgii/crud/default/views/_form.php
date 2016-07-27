@@ -19,61 +19,30 @@ echo "<?php\n";
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use kartik\form\ActiveForm;
-use kartik\builder\Form;
-use kartik\builder\FormGrid;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-form">
 
-<div class="row">
-<div class="col-lg-12">
-    <div class="ibox float-e-margins">
-        <div class="ibox-title">
-            <h5><?php echo $this->title ?></h5>
-            <div class="ibox-tools">
-                <a class="close-link" href="<?php echo '<?php echo'; ?> Url::toRoute(['index']) ?>">
-                    <i class="fa fa-undo"></i> 返回
-                </a>
-            </div>
-        </div>
-        <div class="ibox-content">
-            <div class="user-form">
-<?= "<?php " ?>  
-$form = ActiveForm::begin(['options'=>['enctype'=>'multipart/form-data']]);
-echo FormGrid::widget([
-    'model' => $model,
-    'form' => $form,
-    'columns'=>2,
-    'autoGenerateColumns' => false,
-    'rows' => [
-        [
-            'attributes' => [
-                <?php $key=0; foreach ($attributes as $attribute) {
-                    if (in_array($attribute, $safeAttributes)) {
-                        echo '                '.$generator->generateActiveGridField($attribute) . "\n";
-                        $key ++;
-                    }
-                } ?>
-            ],
+<div class="box-body">
+    <?= "<?php " ?> $form = ActiveForm::begin([
+        'options'=>['class'=>'form-horizontal'],
+        'fieldConfig'=>[
+            'template'=>"{label}\n<div class=\"col-sm-10\">{input}\n{hint}\n{error}</div>",
+            'labelOptions'=>['class'=>'col-sm-2 control-label'],
         ],
-    ]
-]);
-?>
-<div class="hr-line-dashed"></div>
-<div class="row">
-    <div class="col-sm-12" style="text-align:right">
-        <?= "<?= " ?>Html::submitButton($model->isNewRecord ? <?= $generator->generateString('新增') ?> : <?= $generator->generateString('更新') ?>, ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    ]); ?>
+<?php foreach ($generator->getColumnNames() as $attribute) {
+        if (in_array($attribute, $safeAttributes)) {
+            echo "    <?= " . $generator->generateActiveField($attribute) . " ?>\n";
+        }
+    } ?>
+    <div class="box-footer">
+        <a href="javascript:history.back();" class="btn btn-default">取消</a>
+        <?= "<?= " ?> Html::submitButton($model->isNewRecord ? '创建' : '更新', ['class' => $model->isNewRecord ? 'btn btn-success pull-right' : 'btn btn-primary pull-right']) ?>
     </div>
-</div>
-<?= "<?php " ?>
-ActiveForm::end();
-?>
-            </div>
-        </div>
-    </div>
+    <?= "<?php " ?> ActiveForm::end(); ?>
 </div>

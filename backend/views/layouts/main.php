@@ -5,6 +5,7 @@ use yii\helpers\Html;
 /* @var $content string */
 
 $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
+$this->registerJsFile('/js/moment.min.js', ['depends'=>'dmstr\web\AdminLteAsset']);
 $this->registerJsFile($directoryAsset.'/js/demo.js', ['depends'=>'dmstr\web\AdminLteAsset']);
 
 if (Yii::$app->controller->action->id === 'login') {

@@ -61,7 +61,7 @@ class LinkPager extends BaseLinkPager
             $buttons[] = $this->renderPageButton($lastPageLabel, $pageCount - 1, $this->lastPageCssClass, $currentPage >= $pageCount - 1, false);
         }
 
-        $buttons[] = Html::tag('li', Html::input('number', 'page-jump', $this->pagination->getPage()+1, ['style'=>'width:50px;height:28px;margin-left:4px;border:#ddd solid 1px;', 'data-toggle'=>"tooltip", 'data-placement'=>"right", 'title'=>"按回车跳转页码"]));
+        $buttons[] = Html::tag('li', Html::input('number', 'page-jump', $this->pagination->getPage()+1, ['style'=>'width:50px;height:30px;margin-left:4px;border:#ddd solid 1px;text-align:center', 'data-toggle'=>"tooltip", 'data-placement'=>"right", 'title'=>"按回车跳转页码"]));
 
         $customScript = <<< SCRIPT
 $('input[name="page-jump"]').keypress(function(event) {

@@ -17,6 +17,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/sweetalert.min.js',
+        'js/app.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

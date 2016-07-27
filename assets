@@ -1,0 +1,3 @@
+#/bin/bash
+./yii asset console/config/backend-assets.php backend/config/assets-prod.php
+./yii asset console/config/frontend-assets.php frontend/config/assets-prod.php

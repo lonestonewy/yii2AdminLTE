@@ -78,10 +78,10 @@ $(function() {
         radioClass: 'iradio_flat-green'
     });
 
-    //Colorpicker
-    $(".my-colorpicker1").colorpicker();
-    //color picker with addon
-    $(".my-colorpicker2").colorpicker();
+    // //Colorpicker
+    // $(".my-colorpicker1").colorpicker();
+    // //color picker with addon
+    // $(".my-colorpicker2").colorpicker();
 
     //Timepicker
     $(".timepicker").timepicker({

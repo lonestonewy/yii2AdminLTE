@@ -16,7 +16,10 @@ class AdminLtePluginAsset extends AssetBundle
 
     public $css = [
         'select2/select2.min.css',
-
+        'daterangepicker/daterangepicker.css',
+        'datepicker/datepicker3.css',
+        'iCheck/all.css',
+        'timepicker/bootstrap-timepicker.min.css',
     ];
 
     public $js = [
@@ -24,6 +27,14 @@ class AdminLtePluginAsset extends AssetBundle
         // 'sparkline/jquery.sparkline.min.js',
         'chartjs/Chart.min.js',
         'select2/select2.min.js',
-
+        'input-mask/jquery.inputmask.js',
+        'input-mask/jquery.inputmask.date.extensions.js',
+        'input-mask/jquery.inputmask.extensions.js',
+        'daterangepicker/daterangepicker.js',
+        'datepicker/bootstrap-datepicker.js',
+        'timepicker/bootstrap-timepicker.min.js',
+        'slimScroll/jquery.slimscroll.min.js',
+        'iCheck/icheck.min.js',
+        'fastclick/fastclick.js',
     ];
 }

@@ -32,6 +32,7 @@ class Menu extends \yii\widgets\Menu
             if(!is_array($item)) continue;
             if(isset($item['url']) && is_array($item['url'])){
                 $route = explode('/', trim($item['url'][0], '/'));
+                if(count($route) === 1) $route[1]='index';
                 if(count($route) === 2){
                     $parts = explode('-', $route[0]);
                     $controllerName = '';
@@ -71,6 +72,7 @@ class Menu extends \yii\widgets\Menu
                     if(isset($item['url']) && is_array($item['url'])){
 
                         $route = explode('/', trim($item['url'][0], '/'));
+                        if(count($route) === 1) $route[1]='index';
                         if(count($route) === 2){
                             $parts = explode('-', $route[0]);
                             $controllerName = '';

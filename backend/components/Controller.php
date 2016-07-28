@@ -52,6 +52,9 @@ class Controller extends BaseController
                     ],
                 ],
             ],
+            [
+                'class'=>\backend\components\BlankUrlFilter::className(),
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

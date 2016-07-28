@@ -23,7 +23,7 @@ $(function() {
     };
 
     //隐藏没有href的链接
-    $('a:not([href])').hide();
+    // $('a:not([href])').hide();
 
     //Initialize Select2 Elements
     $(".select2").select2({

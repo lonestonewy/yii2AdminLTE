@@ -17,7 +17,7 @@ class SiteController extends Controller
      */
     public function behaviors()
     {
-        return [
+        return \yii\helpers\ArrayHelper::merge([
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
@@ -38,7 +38,7 @@ class SiteController extends Controller
                     'logout' => ['post'],
                 ],
             ],
-        ];
+        ], parent::behaviors());
     }
 
     /**

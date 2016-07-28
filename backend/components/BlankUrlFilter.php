@@ -11,13 +11,15 @@ class BlankUrlFilter extends ActionFilter
 {
     public function afterAction($action, $result)
     {
-        $pattern = '/<a.+?>.+?<\/a>/i';
-        $result = preg_replace_callback($pattern, function($matches){
-            if(strpos($matches[0], 'href=')===false){
-                return '';
-            }
-            return $matches[0];
-        }, $result);
+        if(is_string($result)){
+            $pattern = '/<a.+?>.+?<\/a>/i';
+            $result = preg_replace_callback($pattern, function($matches){
+                if(strpos($matches[0], 'href=')===false){
+                    return '';
+                }
+                return $matches[0];
+            }, $result);
+        }
         return parent::afterAction($action, $result);
     }
 }

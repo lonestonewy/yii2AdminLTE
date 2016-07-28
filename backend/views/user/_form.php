@@ -18,8 +18,13 @@ use common\models\User;
         ],
     ]); ?>
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'password')->textInput(['maxlength' => true]) ?>
+    <?php if ($model->isNewRecord): ?>
+    <?= $form->field($model, 'password')->textInput(['maxlength' => true])->hint('请勿使用过于简单的密码') ?>
+    <?php else: ?>
+    <?= $form->field($model, 'password')->textInput(['maxlength' => true, 'placeholder'=>'新密码'])->hint('若无需修改密码则留空即可') ?>
+    <?php endif ?>
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'roles')->dropdownList($roles, ['prompt'=>'', 'data-placeholder'=>'角色', 'class'=>'form-control select2', 'style'=>'width:100%']) ?>
     <?= $form->field($model, 'status')->dropdownList([User::STATUS_ACTIVE=>'正常', User::STATUS_DELETED=>'已禁用'], ['prompt'=>'', 'data-placeholder'=>'状态', 'class'=>'form-control select2', 'style'=>'width:100%']) ?>
     <div class="box-footer">
         <a href="javascript:history.back();" class="btn btn-default">取消</a>

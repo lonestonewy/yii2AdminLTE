@@ -29,6 +29,7 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_ACTIVE = 10;
 
     public $password;
+    public $roles;
 
     /**
      * @inheritdoc
@@ -63,7 +64,7 @@ class User extends ActiveRecord implements IdentityInterface
             [['username'], 'unique'],
             [['email'], 'unique'],
             [['password_reset_token'], 'unique'],
-            [['password'], 'safe'],
+            [['password', 'roles'], 'safe'],
         ];
     }
 
@@ -81,6 +82,7 @@ class User extends ActiveRecord implements IdentityInterface
             'password_reset_token' => '密码重置TOKEN',
             'email' => 'Email',
             'status' => '状态',
+            'roles' => '系统角色',
             'created_at' => '创建时间',
             'updated_at' => '更新时间',
         ];
@@ -215,5 +217,50 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public function afterFind()
+    {
+        parent::beforeValidate();
+
+        if(Yii::$app->has('authManager')){
+            $roles = Yii::$app->authManager->getRolesByUser($this->id);
+            if(count($roles)>0){
+                $roles = array_keys($roles);
+                $this->roles = $roles[0];
+            }
+        }
+
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        Yii::$app->authManager->revokeAll($this->id);
+        if(!empty($this->roles)){
+            // 授予角色
+            $role = Yii::$app->authManager->getRole($this->roles);
+            Yii::$app->authManager->assign($role, $this->id);
+        }
+
+        return parent::afterSave($insert, $changedAttributes);
+    }
+
+    /**
+     * 得到当前用户的角色名称
+     * @return string
+     */
+    public function getRoleNames($as_array = false)
+    {
+        $roles = Yii::$app->authManager->getRolesByUser($this->id);
+
+        $names = [];
+        foreach($roles as $role)
+        {
+            $names[$role->name] = $role->description&&!$as_array ? $role->description : $role->name;
+        }
+
+        if($as_array) return $names;
+
+        return implode('/', $names);
     }
 }

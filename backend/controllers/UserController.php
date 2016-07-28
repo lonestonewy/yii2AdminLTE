@@ -57,8 +57,16 @@ class UserController extends Controller
 
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+
+            $roles = \yii\helpers\ArrayHelper::map(Yii::$app->authManager->getRoles(), 'name', 'description');
+
+            if(!Yii::$app->user->isAdmin){
+                unset($roles['Admin']);
+            }
+
             return $this->render('create', [
                 'model' => $model,
+                'roles' => $roles,
             ]);
         }
     }
@@ -74,12 +82,19 @@ class UserController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->setPassword($model->password);
+            if($model->password) $model->setPassword($model->password);
             $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $roles = \yii\helpers\ArrayHelper::map(Yii::$app->authManager->getRoles(), 'name', 'description');
+
+            if(!Yii::$app->user->isAdmin){
+                unset($roles['Admin']);
+            }
+
             return $this->render('update', [
                 'model' => $model,
+                'roles' => $roles,
             ]);
         }
     }

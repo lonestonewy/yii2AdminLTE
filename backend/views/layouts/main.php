@@ -44,7 +44,7 @@ if (Yii::$app->controller->action->id === 'login') {
           };
         </script>
     </head>
-    <body class="hold-transition skin-blue sidebar-mini">
+    <body class="hold-transition skin-blue-light sidebar-mini fixed">
     <?php $this->beginBody() ?>
     <div class="wrapper">
 

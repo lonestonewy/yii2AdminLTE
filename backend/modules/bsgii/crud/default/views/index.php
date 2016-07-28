@@ -70,6 +70,7 @@ $dataProvider->pagination->pageSize= Yii::$app->config->get('backend_pagesize', 
                     ],
                 ],
                 'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 <?php
 $count = 0;
 if (($tableSchema = $generator->getTableSchema()) === false) {

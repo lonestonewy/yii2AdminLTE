@@ -30,12 +30,14 @@
         "gamitg/yii2-detailview4cols": "*",
         "codelint/chinapay": ">=1.1.6",
         "light/yii2-lock-form": "~1.0.2",
+        "light/yii2-sweet-submit": "^1.0",
         "thelfensdrfer/yii2-ssh-console": "^1.1",
         "abhi1693/yii2-config": "^1.0",
         "kartik-v/yii2-date-range": "^1.6",
         "kartik-v/yii2-builder": "^1.6",
         "kartik-v/yii2-widgets": "^3.4",
-        "bower-asset/jquery": "1.11.*@stable"
+        "bower-asset/jquery": "1.11.*@stable",
+        "bower-asset/blueimp-gallery": "^2.21"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

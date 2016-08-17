@@ -35,7 +35,7 @@ $dataProvider->pagination->pageSize= Yii::$app->config->get('backend_pagesize', 
                 <!-- Check all button -->
                 <!-- <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button> -->
                 <div class="btn-group">
-                    <?php echo "<?="; ?> Html::a('<i class="fa fa-pencil-square-o"></i>', ['create'], ['class' => 'btn btn-default']) ?>
+                    <?php echo "<?="; ?> Html::a('<i class="fa fa-pencil-square-o"></i>', ['create'], ['class' => 'btn btn-primary']) ?>
                 </div>
                 <!-- /.btn-group -->
                 <a type="button" class="btn btn-default" href="javascript:window.location.reload()"><i class="fa fa-refresh"></i></a>
@@ -97,7 +97,6 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
                     'class' => 'yii\grid\ActionColumn',
                     'header'=>'操作',
                     'headerOptions'=>['style'=>'width:150px'],
-                    'buttonOptions'=>['class'=>'btn btn-default btn-sm'],
                 ],
             ],
         ]); ?>

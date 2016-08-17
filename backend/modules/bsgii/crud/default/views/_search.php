@@ -22,6 +22,10 @@ use yii\widgets\ActiveForm;
     <?= "<?php " ?>$form = ActiveForm::begin([
         'method' => 'get',
         'options'=>['class'=>'form-inline', 'role'=>'form'],
+        'fieldConfig'=>[
+            'template'=>"{label}\n{input}\n",
+            'labelOptions'=>['class'=>'sr-only'],
+        ],
     ]); ?>
 <?php
 $count = 0;
@@ -35,7 +39,6 @@ foreach ($generator->getColumnNames() as $attribute) {
 ?>
     <div class="form-group">
         <?= "<?= " ?>Html::submitButton(<?= $generator->generateString('搜索') ?>, ['class' => 'btn btn-default']) ?>
-        <div class="help-block"></div>
     </div>
 
     <?= "<?php " ?>ActiveForm::end(); ?>

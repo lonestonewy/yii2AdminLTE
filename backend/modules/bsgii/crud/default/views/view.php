@@ -18,27 +18,25 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
 
-$this->title = '<?php echo $model->modelName ?>详情 '.$model-><?= $generator->getNameAttribute() ?>;
-$this->params['breadcrumbs'][] = ['label' => '<?php echo $model->modelName ?>', 'url' => ['index']];
+$this->title = '<?php echo $model->modelName ?>详情 '.$model->id;
+$this->params['breadcrumbs'][] = ['label' => 'id', 'url' => ['index']];
 $this->params['breadcrumbs'][] = '<?php echo $model->modelName ?>详情';
 ?>
 
 <div class="box">
     <div class="box-header">
-      <div class="btn-group">
-        <?= "<?= " ?> Html::a('<i class="fa fa-pencil"></i>', ['update', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
+        <?= "<?= " ?> Html::a('<i class="fa fa-pencil"></i>', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= "<?= " ?> Html::a('<i class="fa fa-trash-o"></i>', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-default',
+            'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => '您确定要删除该项目吗？',
                 'method' => 'post',
             ],
         ]) ?>
         <!-- /.btn-group -->
-    </div>
-    <div class="pull-right">
-        <?= "<?= " ?> Html::a('<i class="fa fa-reply"></i>', ['index'], ['class' => 'btn btn-default']) ?>
-    </div>
+        <div class="pull-right">
+            <?= "<?= " ?> Html::a('<i class="fa fa-reply"></i>', ['index'], ['class' => 'btn btn-default']) ?>
+        </div>
     </div>
     <!-- /.box-header -->
     <div class="box-body no-padding">

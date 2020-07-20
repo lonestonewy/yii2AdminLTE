@@ -38,7 +38,8 @@ use common\components\behaviors\DatetimeBehavior;
  */
 class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . "\n" ?>
 {
-    public $modelName = '';
+    public static $modelName = '<?= $generator->generateModelName($tableName) ?>';
+    public $fileAttributes = [<?= implode(", ", $generator->fileAttributes) ?>];
 
     /**
      * @inheritdoc
@@ -56,6 +57,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
     {
         return Yii::$app->get('<?= $generator->db ?>');
     }
+
 <?php endif; ?>
 <?php if(array_key_exists('created_at', $labels)||array_key_exists('updated_at', $labels)): ?>
     public function behaviors()
@@ -64,6 +66,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
             DatetimeBehavior::className(),
         ];
     }
+
 <?php endif; ?>
     /**
      * @inheritdoc

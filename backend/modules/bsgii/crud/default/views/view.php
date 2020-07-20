@@ -8,25 +8,28 @@ use yii\helpers\StringHelper;
 
 $urlParams = $generator->generateUrlParams();
 $model = new $generator->modelClass;
+$modelClassName = substr($generator->modelClass, strrpos($generator->modelClass, '\\')+1);
+
 echo "<?php\n";
 ?>
 
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
+use <?php echo $generator->modelClass ?>;
 
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
 
-$this->title = '<?php echo $model->modelName ?>详情 '.$model->id;
+$this->title = <?= $modelClassName ?>::$modelName.'详情 '.$model->id;
 $this->params['breadcrumbs'][] = ['label' => 'id', 'url' => ['index']];
-$this->params['breadcrumbs'][] = '<?php echo $model->modelName ?>详情';
+$this->params['breadcrumbs'][] = <?= $modelClassName ?>::$modelName.'详情';
 ?>
 
 <div class="box">
     <div class="box-header">
-        <?= "<?= " ?> Html::a('<i class="fa fa-pencil"></i>', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= "<?= " ?> Html::a('<i class="fa fa-trash-o"></i>', ['delete', 'id' => $model->id], [
+        <?= "<?= " ?> Html::a('<i class="fa fa-pencil-alt"></i>', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= "<?= " ?> Html::a('<i class="fa fa-trash-alt"></i>', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => '您确定要删除该项目吗？',

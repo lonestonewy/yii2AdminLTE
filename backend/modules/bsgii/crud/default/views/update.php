@@ -8,6 +8,8 @@ use yii\helpers\StringHelper;
 
 $urlParams = $generator->generateUrlParams();
 $model = new $generator->modelClass;
+$modelClassName = substr($generator->modelClass, strrpos($generator->modelClass, '\\')+1);
+
 echo "<?php\n";
 ?>
 
@@ -15,15 +17,16 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
+use <?php echo $generator->modelClass ?>;
 
-$this->title = '修改<?php echo $model->modelName ?>' . ' ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => '<?php echo $model->modelName ?>管理', 'url' => ['index']];
+$this->title = '修改' .<?= $modelClassName ?>::$modelName. ' ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => '管理'.<?= $modelClassName ?>::$modelName, 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', <?= $urlParams ?>]];
 $this->params['breadcrumbs'][] = '修改';
 ?>
 <div class="box box-info">
     <div class="box-header">
-        <?= "<?= " ?> Html::a('<i class="fa fa-trash-o"></i>', ['delete', 'id' => $model->id], [
+        <?= "<?= " ?> Html::a('<i class="fa fa-trash-alt"></i>', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => '您确定要删除该项目吗？',

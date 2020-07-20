@@ -19,7 +19,11 @@ echo "<?php\n";
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
+
+<?php foreach($generator->foreignKeyClassNames as $foreignKeyClassName): ?>
+use <?=$foreignKeyClassName?>;
+<?php endforeach;?>
 
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
@@ -41,7 +45,7 @@ use yii\widgets\ActiveForm;
         }
     } ?>
     <div class="box-footer">
-        <a href="javascript:history.back();" class="btn btn-default">取消</a>
+        <a data-dismiss="modal" href="javascript:history.back();" class="btn btn-default">取消</a>
         <?= "<?= " ?> Html::submitButton($model->isNewRecord ? '创建' : '更新', ['class' => $model->isNewRecord ? 'btn btn-success pull-right' : 'btn btn-primary pull-right']) ?>
     </div>
     <?= "<?php " ?> ActiveForm::end(); ?>

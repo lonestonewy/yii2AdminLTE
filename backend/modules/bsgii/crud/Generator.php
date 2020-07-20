@@ -37,6 +37,7 @@ class Generator extends \yii\gii\generators\crud\Generator
     public $baseControllerClass = 'backend\components\Controller';
     public $indexWidgetType = 'grid';
     public $searchModelClass = '';
+    public $foreignKeyClassNames = [];
 
     /**
      * @inheritdoc
@@ -53,6 +54,14 @@ class Generator extends \yii\gii\generators\crud\Generator
     {
         return 'This generator generates a controller and views that implement CRUD (Create, Read, Update, Delete)
             operations for the specified data model.';
+    }
+
+    public function generate() {
+        $tableSchema = $this->getTableSchema();
+        foreach($tableSchema->columns as $attribute=>$column) {
+            $this->getForeignKeyClassName($column->name);
+        }
+        return parent::generate();
     }
 
     /**
@@ -79,6 +88,43 @@ class Generator extends \yii\gii\generators\crud\Generator
         }
     }
 
+    // 根据反射提取类常量字段
+    public function getConstsAttributes() {
+        $rec = new \ReflectionClass($this->modelClass);
+        $consts = $rec->getConstants();
+        $constsAttributes = [];
+        if (is_array($consts)) {
+            foreach ($consts as $name => $value) {
+                $constsAttributes[] = strtolower(substr($name, 0, strrpos($name, '_')));
+            }
+        }
+        return array_unique($constsAttributes);
+    }
+
+    public function getForeignKeyClassName($attribute) {
+        $suffix = substr($attribute, -3);
+        if($suffix !== '_id') return;
+        $attribute = substr($attribute, 0, strlen($attribute)-3);
+        $namespace = substr($this->modelClass, 0, strrpos($this->modelClass, '\\'));
+        $className = '\\'.$namespace.'\\'.ucfirst($attribute);
+        eval("use $className;");
+        if(\class_exists($className)) {
+            $this->foreignKeyClassNames[ucfirst($attribute)] = $className;
+            return [ucfirst($attribute), $className];
+        }
+
+        $aliases = Yii::$aliases;
+        foreach($aliases as $alias => $path){
+            $namespace = substr($alias, 1).'\\models';
+            $className = '\\'.$namespace.'\\'.ucfirst($attribute);
+            eval("use $className;");
+            if(\class_exists($className)) {
+                $this->foreignKeyClassNames[ucfirst($attribute)] = $className;
+                return [ucfirst($attribute), $className];
+            }
+        }
+    }
+
     /**
      * Generates code for active field
      * @param string $attribute
@@ -94,8 +140,12 @@ class Generator extends \yii\gii\generators\crud\Generator
                 return "\$form->field(\$model, '$attribute')";
             }
         }
+
         $column = $tableSchema->columns[$attribute];
-        if ($column->phpType === 'boolean'||($column->type=='smallint'&&strpos($column->name, 'is_')===0)) {
+        list($foreignKeyClassName, $fullForeignKeyClassName) = $this->getForeignKeyClassName($column->name);
+        if ($column->type === 'integer' && $foreignKeyClassName) {
+            return "\$form->field(\$model, '$attribute')->dropdownList({$foreignKeyClassName}::instantiate([])->getListData(), ['class'=>'select2', 'style'=>'width:100%', 'data-placeholder'=>'{$column->comment}', 'prompt'=>''])";
+        } elseif (strpos($column->name, 'is_')===0) {
             return "\$form->field(\$model, '$attribute')->radiolist(['1'=>'是', '0'=>'否'], ['itemOptions'=>['class'=>'minimal']])";
         } elseif ($column->type === 'text'&&in_array($column->name, ['content', 'detail'])) {
             return "\$form->field(\$model, '$attribute')->widget(backend\widgets\CKEditor::classname())";
@@ -103,7 +153,9 @@ class Generator extends \yii\gii\generators\crud\Generator
             return "\$form->field(\$model, '$attribute')->textarea(['rows' => 6])";
         } elseif ($column->type === 'string' && in_array($column->name, ['image', 'photo', 'filepath', 'screenshot', 'attach'])) {
             return "\$form->field(\$model, '$attribute')->widget(backend\widgets\FileInput::classname())->hint('支持JPG、PNG格式，不要超过500KB为宜')";
-        } else {
+        } elseif ($column->type === 'string' && in_array(strtolower($column->name), $this->getConstsAttributes())) {
+            return "\$form->field(\$model, '$attribute')->dropdownList(\$model->getConstOptions('".strtoupper($column->name)."'), ['class'=>'select2', 'style'=>'width:100%', 'data-placeholder'=>'{$column->comment}', 'prompt'=>''])";
+        }else {
             if (preg_match('/^(password|pass|passwd|passcode)$/i', $column->name)) {
                 $input = 'passwordInput';
             } else {
@@ -142,6 +194,8 @@ class Generator extends \yii\gii\generators\crud\Generator
 
         if ($column->phpType === 'boolean') {
             return "\$form->field(\$model, '$attribute', ['labelOptions'=>['class'=>'sr-only']])->checkbox()";
+        } elseif ($column->type === 'string' && in_array(strtolower($column->name), $this->getConstsAttributes())) {
+            return "\$form->field(\$model, '$column->name', ['labelOptions'=>['class'=>'sr-only']])->dropdownList(\$model->getConstOptions('".strtoupper($column->name)."'), ['prompt'=>'', 'data-placeholder'=>'不限{$column->comment}', 'class'=>'form-control select2', 'style'=>'width:120px'])";
         } else {
             return "\$form->field(\$model, '$attribute', ['labelOptions'=>['class'=>'sr-only'], 'inputOptions'=>['class'=>'form-control', 'placeholder'=>'{$attributeLables[$attribute]}']])";
         }

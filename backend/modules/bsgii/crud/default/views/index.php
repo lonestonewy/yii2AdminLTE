@@ -9,6 +9,7 @@ use yii\helpers\StringHelper;
 $urlParams = $generator->generateUrlParams();
 $nameAttribute = $generator->getNameAttribute();
 $model = new $generator->modelClass;
+$modelClassName = substr($generator->modelClass, strrpos($generator->modelClass, '\\')+1);
 
 echo "<?php\n";
 ?>
@@ -16,15 +17,16 @@ echo "<?php\n";
 use yii\helpers\Html;
 use yii\helpers\Url;
 use <?= $generator->indexWidgetType === 'grid' ? "yii\\grid\\GridView" : "yii\\widgets\\ListView" ?>;
+use <?php echo $generator->modelClass ?>;
 
 /* @var $this yii\web\View */
 <?= !empty($generator->searchModelClass) ? "/* @var \$searchModel " . ltrim($generator->searchModelClass, '\\') . " */\n" : '' ?>
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = '<?php echo $model->modelName ?>管理';
+$this->title = <?= $modelClassName ?>::$modelName.'管理';
 $this->params['breadcrumbs'][] = $this->title;
 
-$dataProvider->pagination->pageSize= Yii::$app->config->get('backend_pagesize', 20);
+$dataProvider->pagination->pageSize= Yii::$app->config->get(Yii::$app->session['config']['id'], 'backend_pagesize', 20);
 ?>
 
 
@@ -35,10 +37,10 @@ $dataProvider->pagination->pageSize= Yii::$app->config->get('backend_pagesize', 
                 <!-- Check all button -->
                 <!-- <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button> -->
                 <div class="btn-group">
-                    <?php echo "<?="; ?> Html::a('<i class="fa fa-pencil-square-o"></i>', ['create'], ['class' => 'btn btn-primary']) ?>
+                    <?php echo "<?="; ?> Html::a('<i class="fa fa-pencil-alt"></i>', ['create'], ['class' => 'btn btn-primary']) ?>
                 </div>
                 <!-- /.btn-group -->
-                <a type="button" class="btn btn-default" href="javascript:window.location.reload()"><i class="fa fa-refresh"></i></a>
+                <a type="button" class="btn btn-default" href="javascript:window.location.reload()"><i class="fa fa-sync"></i></a>
                 <div class="visible-lg-block pull-right">
                     <!-- <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
@@ -97,6 +99,7 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
                     'class' => 'yii\grid\ActionColumn',
                     'header'=>'操作',
                     'headerOptions'=>['style'=>'width:150px'],
+                    'buttonOptions'=>['class'=>'btn btn-default btn-sm'],
                 ],
             ],
         ]); ?>

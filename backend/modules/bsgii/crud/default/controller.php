@@ -93,13 +93,13 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
 
         if(Yii::$app->request->isPost)
         {
-            $model->load(Yii::$app->request->post());
             // 取消注释来上传文件/图片
-            // $model->uploadFiles(['attach']);
-            // $model->uploadImages(['image']);
+            // $model->uploadFiles($model->fileAttributes);
+            // $model->uploadImages($model->fileAttributes);
+            $model->load($_POST);
 
             if (!$model->hasErrors() && $model->save()) {
-                Yii::$app->session->setFlash('success', $model->modelName.'#'.$model->id.'已添加成功。');
+                Yii::$app->session->setFlash('success', <?= $modelClass ?>::$modelName.'#'.$model->id.'已添加成功。');
                 return $this->redirect(['view', <?= $urlParams ?>]);
             }
         }
@@ -121,13 +121,13 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
 
         if(Yii::$app->request->isPost)
         {
-            $model->load(Yii::$app->request->post());
             // 取消注释来上传文件/图片
-            // $model->uploadFiles(['attach']);
-            // $model->uploadImages(['image']);
+            // $model->uploadFiles($model->fileAttributes);
+            // $model->uploadImages($model->fileAttributes);
+            $model->load($_POST);
 
             if (!$model->hasErrors() && $model->save()) {
-                Yii::$app->session->setFlash('success', $model->modelName.'#'.$model->id.'已更新成功。');
+                Yii::$app->session->setFlash('success', <?= $modelClass ?>::$modelName.'#'.$model->id.'已更新成功。');
                 return $this->redirect(['view', <?= $urlParams ?>]);
             }
         }
@@ -146,7 +146,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     public function actionDelete(<?= $actionParams ?>)
     {
         $model = $this->findModel(<?= $actionParams ?>);
-        Yii::$app->session->setFlash('warning', $model->modelName.'#'.$model->id.'已成功删除。');
+        Yii::$app->session->setFlash('warning', <?= $modelClass ?>::$modelName.'#'.$model->id.'已成功删除。');
         $model->delete();
 
         return $this->redirect(['index']);

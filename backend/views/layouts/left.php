@@ -31,8 +31,8 @@
                 'items' => [
                     ['label' => '系统首页', 'icon' => 'fa fa-home', 'url' => ['/site/index']],
                     ['label' => '内容运营', 'icon' => 'fa fa-list', 'url' => '#', 'options' => ['class' => 'treeview'], 'items' => [
-                        ['label' => '资讯管理', 'icon' => 'fa fa-list-ol', 'url' => ['/article']],
-                        ['label' => '资讯分类', 'icon' => 'fa fa-list-ol', 'url' => ['/article-category']],
+                        // ['label' => '资讯管理', 'icon' => 'fa fa-list-ol', 'url' => ['/article']],
+                        // ['label' => '资讯分类', 'icon' => 'fa fa-list-ol', 'url' => ['/article-category']],
                     ]],
                     
                     ['label' => '系统设置', 'icon' => 'fa fa-cog', 'url' => '#', 'options' => ['class' => 'treeview'], 'items' => [

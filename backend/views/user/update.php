@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = 'Update';
 <div class="box box-info">
     <div class="box-header">
           <div class="btn-group">
-            <?=  Html::a('<i class="fa fa-trash-o"></i>', ['delete', 'id' => $model->id], [
+            <?=  Html::a('<i class="fa fa-trash-alt"></i>', ['delete', 'id' => $model->id], [
                 'class' => 'btn btn-default',
                 'data' => [
                     'confirm' => '您确定要删除该项目吗？',

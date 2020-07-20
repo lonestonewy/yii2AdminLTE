@@ -20,10 +20,10 @@ $dataProvider->pagination->pageSize= Yii::$app->config->get('backend_pagesize', 
                 <!-- Check all button -->
                 <!-- <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button> -->
                 <div class="btn-group">
-                    <?= Html::a('<i class="fa fa-pencil-square-o"></i>', ['create'], ['class' => 'btn btn-default btn-sm']) ?>
+                    <?= Html::a('<i class="fa fa-pencil-alt"></i>', ['create'], ['class' => 'btn btn-default btn-sm']) ?>
                 </div>
                 <!-- /.btn-group -->
-                <a type="button" class="btn btn-default btn-sm" href="javascript:window.location.reload()"><i class="fa fa-refresh"></i></a>
+                <a type="button" class="btn btn-default btn-sm" href="javascript:window.location.reload()"><i class="fa fa-sync"></i></a>
                 <div class="visible-lg-block pull-right">
                     <!-- <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">

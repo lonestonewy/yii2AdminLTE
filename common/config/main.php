@@ -7,6 +7,9 @@ return [
         '@npm'   => '@vendor/npm-asset',
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+    'bootstrap' => [
+        'queue', // The component registers its own console commands
+    ],
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -28,6 +31,17 @@ return [
             'cacheId'       => 'cache',                              // Cache Id. Defaults to NULL (Optional)
             'cacheKey'      => 'config.cache',                       // Key identifying the cache value (Required only if cacheId is set)
             'cacheDuration' => 100                                   // Cache Expiration time in seconds. 0 means never expire. Defaults to 0 (Optional)
+        ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
+        'queue' => [
+            'class' => \yii\queue\db\Queue::class,
+            'as log' => \yii\queue\LogBehavior::class,
+            'db' => 'db', // DB connection component or its config
+            'tableName' => '{{%queue}}', // Table name
+            'channel' => 'default', // Queue channel key
+            'mutex' => \yii\mutex\MysqlMutex::class, // Mutex used to sync queries
         ],
         // 'session' => [
         //     'class' => 'yii\web\DbSession',

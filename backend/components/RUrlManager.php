@@ -11,6 +11,10 @@ class RUrlManager extends UrlManager
      */
     public function createUrl($params)
     {
+        if(Yii::$app->user->IsAdmin){
+            return parent::createUrl($params);
+        }
+
         $access = Yii::$app->session['access-'.Yii::$app->user->id];
         if($access === null){
             $access = (!Yii::$app->user->isGuest && !Yii::$app->user->IsAdmin);

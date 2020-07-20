@@ -1,0 +1,27 @@
+{
+  "name": "himiklab/yii2-easy-thumbnail-image-helper",
+  "description": "Yii2 helper for creating and caching thumbnails on real time",
+  "keywords": ["yii2", "thumbnail", "image", "helper"],
+  "type": "yii2-extension",
+  "license": "MIT",
+  "support": {
+    "source": "https://github.com/himiklab/yii2-easy-thumbnail-image-helper",
+    "issues": "https://github.com/himiklab/yii2-easy-thumbnail-image-helper/issues"
+  },
+  "authors": [
+    {
+	  "name": "HimikLab",
+      "homepage": "https://github.com/himiklab/"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": "~2.0.13",
+    "yiisoft/yii2-imagine": ">=2.0.4",
+    "yiisoft/yii2-httpclient": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "himiklab\\thumbnail\\": ""
+    }
+  }
+}

@@ -19,11 +19,19 @@ class m130524_201442_init extends Migration
             'password_hash' => $this->string()->notNull(),
             'password_reset_token' => $this->string()->unique(),
             'email' => $this->string()->notNull()->unique(),
-
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
         ], $tableOptions);
+
+        $this->insert('{{%user}}', [
+            'username'=>'admin',
+            'auth_key'=>'oqYHnmKD8RbhK7IZ60RwWsZeK9F8c2Sg',
+            'password_hash'=>'$2y$13$1rTM.PFUhGx/OEOwSxcGu.pILDAu3ueVlWUdvRHepDXqkXINmI0Iy',
+            'password_reset_token'=>null,
+            'email'=>'test@domain.com',
+            'status'=>10,
+        ]);
     }
 
     public function down()

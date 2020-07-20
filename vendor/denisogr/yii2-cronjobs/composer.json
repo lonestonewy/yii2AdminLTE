@@ -1,0 +1,22 @@
+{
+	"name": "denisogr/yii2-cronjobs",
+	"description": "cronjobs",
+	"type": "yii2-extension",
+	"keywords": ["yii2","extension","cronjobs"],
+	"license": "BSD-3-Clause",
+	"authors": [
+		{
+			"name": "Denis Porplenko",
+			"email": "denis.porplenko@gmail.com"
+		}
+	],
+	"minimum-stability": "dev",
+	"require": {
+        	"yiisoft/yii2": "*"
+    	},
+	"autoload": {
+		"psr-4": {
+			"denisog\\cronjobs\\": ""
+		}
+	}
+}

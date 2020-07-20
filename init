@@ -84,7 +84,10 @@ foreach ($callbacks as $callback) {
     }
 }
 
-echo "\n  ... initialization completed.\n\n";
+echo "\n  ... initialization completed.\n\n
+PLEASE create database and modify common\config\main-local.php and RUN migrates to create tables: \n
+./yii migrate 
+";
 
 function getFileList($root, $basePath = '')
 {

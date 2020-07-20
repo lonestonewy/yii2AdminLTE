@@ -40,7 +40,7 @@ use backend\widgets\Alert;
     <div class="pull-right hidden-xs">
         <b>Version</b> 2.0
     </div>
-    <strong>Copyright &copy; <?php echo date('Y') ?> <a href="http://yiidev.cn">lonestone@qq.com</a>.</strong> All rights
+    <strong>Copyright &copy; <?php echo date('Y') ?>.</strong> All rights
     reserved.
 </footer>
 
@@ -222,7 +222,7 @@ use backend\widgets\Alert;
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Delete chat history
-                        <a href="javascript::;" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                        <a href="javascript::;" class="text-red pull-right"><i class="fa fa-trash-alt"></i></a>
                     </label>
                 </div>
                 <!-- /.form-group -->

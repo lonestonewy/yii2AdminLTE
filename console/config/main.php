@@ -11,6 +11,20 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'console\controllers',
+    'controllerMap' => [
+        'migrate' => [
+            'class' => 'yii\console\controllers\MigrateController',
+            'migrationNamespaces' => [
+                'yii\queue\db\migrations',
+            ],
+            'migrationPath' => [
+                '@console/migrations',
+                '@yii/rbac/migrations/',
+                '@yii/log/migrations/',
+                '@vendor/abhi1693/yii2-config/migrations/'
+            ], // allows to disable not namespaced migration completely
+        ],
+    ],
     'components' => [
         'log' => [
             'targets' => [

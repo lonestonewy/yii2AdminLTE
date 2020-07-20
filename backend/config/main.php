@@ -52,9 +52,6 @@ return [
             'rules' => [
             ],
         ],
-        'authManager' => [
-            'class' => 'yii\rbac\DbManager',
-        ],
         'view' => [
             'theme' => [
                 'pathMap' => [

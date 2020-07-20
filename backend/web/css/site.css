@@ -109,3 +109,36 @@ a.desc:after {
 .nav > li > form > button:hover {
     text-decoration: none;
 }
+
+.detail-view td img {max-width:480px; }
+.wu-example {
+    position: relative;
+    padding: 45px 15px 15px;
+    margin: 15px 0;
+    background-color: #fafafa;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, .05);
+    border-color: #e5e5e5 #eee #eee;
+    border-style: solid;
+    border-width: 1px 0;
+}
+.wu-example:after {
+    content: "BIG FILE UPLOAD";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #bbb;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+#picker {
+    display: inline-block;
+    line-height: 1.428571429;
+    vertical-align: middle;
+    margin: 0 12px 0 0;
+}
+#picker .webuploader-pick {
+    padding: 6px 12px;
+    display: block;
+}

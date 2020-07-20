@@ -29,12 +29,12 @@ return [
             'cacheKey'      => 'config.cache',                       // Key identifying the cache value (Required only if cacheId is set)
             'cacheDuration' => 100                                   // Cache Expiration time in seconds. 0 means never expire. Defaults to 0 (Optional)
         ],
-        'session' => [
-            'class' => 'yii\web\DbSession',
-            // 'db' => 'db',
-            // 'sessionTable' => 'session',
-            'timeout'=>24*3600,
-        ],
+        // 'session' => [
+        //     'class' => 'yii\web\DbSession',
+        //     // 'db' => 'db',
+        //     // 'sessionTable' => 'session',
+        //     'timeout'=>24*3600,
+        // ],
         'log' => [
             'traceLevel' => 3,
             'targets' => [

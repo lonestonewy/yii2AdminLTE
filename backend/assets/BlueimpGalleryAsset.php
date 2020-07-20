@@ -15,7 +15,7 @@ use yii\web\View;
  */
 class BlueimpGalleryAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/bower/blueimp-gallery';
+    public $sourcePath = '@bower/blueimp-gallery';
 
     public $css = [
         'css/blueimp-gallery.min.css',

@@ -21,7 +21,7 @@ $fieldOptions2 = [
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="#"><b>VRSite</b>管理中心</a>
+        <a href="#"><b><?=Yii::$app->name?></b>管理中心</a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">

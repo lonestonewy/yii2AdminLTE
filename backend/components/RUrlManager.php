@@ -20,6 +20,24 @@ class RUrlManager extends UrlManager
         {
             $route = explode('/', $params[0]);
 
+            $modules = array_keys(Yii::$app->getModules());
+            $module_count = 0;
+            foreach($route as $id){
+                if(in_array($id, $modules)){
+                    $module_count++;
+                }
+            }
+            if($module_count>0){
+                if(count($route) == $module_count){
+                    $route[$module_count] = 'default';
+                    $route[$module_count+1] = 'index';
+                }
+                if(count($route) == $module_count + 1){
+                    $route[$module_count + 1] = 'index';
+                }
+            }
+
+            if(count($route) === 1) $route[1]='index';
             if(count($route) === 2){
                 $parts = explode('-', $route[0]);
                 $controllerName = '';
@@ -28,31 +46,29 @@ class RUrlManager extends UrlManager
                         $controllerName .= ucfirst($part);
                     }
                 }
-
                 $itemName = $controllerName.".*";
                 $subItemName = $controllerName.".".ucfirst($route[1]);
 
-                if(!Yii::$app->user->can($itemName))
-                {
-                    if(!Yii::$app->user->can($subItemName)) return false;
+                if(!Yii::$app->user->can($itemName) && !Yii::$app->user->can($subItemName)){
+                    return false;
                 }
-            }
-            elseif(count($route) === 3){
-                $parts = explode('-', $route[1]);
-                $controllerName = ucfirst($route[0]).'.';;
-                if(is_array($parts)){
-                    foreach ($parts as $part) {
-                        $controllerName .= ucfirst($part);
+            }elseif(count($route) === 3){
+                if($route[0]!='debug' && $route[0]!='gii'){
+                    $parts = explode('-', $route[1]);
+                    $controllerName = ucfirst($route[0]).'.';
+                    if(is_array($parts)){
+                        foreach ($parts as $part) {
+                            $controllerName .= ucfirst($part);
+                        }
+                    }
+                    $itemName = $controllerName.".*";
+                    $subItemName = $controllerName.".".ucfirst($route[2]);
+                    if(!Yii::$app->user->can($itemName) && !Yii::$app->user->can($subItemName)){
+                        return false;
                     }
                 }
-
-                $itemName = $controllerName.".*";
-                $subItemName = $controllerName.".".ucfirst($route[2]);
-
-                if(!Yii::$app->user->can($itemName))
-                {
-                    if(!Yii::$app->user->can($subItemName)) return false;
-                }
+            }else{
+                return false;
             }
         }
 

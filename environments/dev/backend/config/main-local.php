@@ -17,8 +17,13 @@ if (!YII_ENV_TEST) {
     ];
 
     $config['bootstrap'][] = 'gii';
-    $config['modules']['gii'] = [
-        'class' => 'yii\gii\Module',
+    $config['modules']['gii']['class'] = 'yii\gii\Module';
+    $config['modules']['gii']['generators'] = [
+        'bsgii-crud' => ['class' => 'backend\modules\bsgii\crud\Generator'],
+        'bsgii-model' => ['class' => 'backend\modules\bsgii\model\Generator'],
+        'job' => [
+            'class' => \yii\queue\gii\Generator::class,
+        ],
     ];
 }
 

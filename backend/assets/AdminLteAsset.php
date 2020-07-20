@@ -3,6 +3,7 @@ namespace backend\assets;
 
 use yii\base\Exception;
 use yii\web\AssetBundle;
+use yii\web\View;
 
 /**
  * AdminLte AssetBundle
@@ -11,6 +12,7 @@ use yii\web\AssetBundle;
 class AdminLteAsset extends AssetBundle
 {
     public $sourcePath = '@vendor/almasaeed2010/adminlte/dist';
+    public $jsOptions = ['position'=>View::POS_HEAD];
 
     public $css = [
         'css/AdminLTE.min.css',
@@ -18,7 +20,7 @@ class AdminLteAsset extends AssetBundle
     ];
 
     public $depends = [
-        'rmrevin\yii\fontawesome\AssetBundle',
+        'rmrevin\yii\fontawesome\NpmFreeAssetBundle',
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
         'yii\bootstrap\BootstrapPluginAsset',
@@ -26,7 +28,7 @@ class AdminLteAsset extends AssetBundle
     ];
 
     public $js = [
-        'js/app.min.js',
+        'js/adminlte.min.js',
         'js/demo.js',
     ];
 }

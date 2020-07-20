@@ -1,6 +1,6 @@
 $(function() {
     // 替换yii2默认的js对话框
-    yii.confirm = function (message, ok, cancel) {
+    yii.confirm = function(message, ok, cancel) {
         swal({
             title: message,
             text: null,
@@ -9,8 +9,8 @@ $(function() {
             confirmButtonColor: "#DD6B55",
             confirmButtonText: "确定",
             cancelButtonText: "取消",
-            closeOnConfirm: false
-        }, function (isConfirm) {
+            closeOnConfirm: true
+        }, function(isConfirm) {
             if (isConfirm) {
                 !ok || ok();
             } else {
@@ -27,8 +27,9 @@ $(function() {
 
     //Initialize Select2 Elements
     $(".select2").select2({
-        'allowClear':true,
-        'minimumResultsForSearch':10
+        'allowClear': true,
+        'minimumResultsForSearch': 10,
+        'theme': 'default'
     });
 
     //Datemask dd/mm/yyyy
@@ -63,6 +64,14 @@ $(function() {
     //Date picker
     $('#datepicker').datepicker({
         autoclose: true
+    });
+
+    $('.input-daterange').datepicker({
+        keyboardNavigation: false,
+        forceParse: false,
+        autoclose: true,
+        format: 'yyyy-mm-dd',
+        language: 'zh-CN'
     });
 
     //iCheck for checkbox and radio inputs
